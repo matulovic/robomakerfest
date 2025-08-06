@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoboMakerFest - O Festival de Robótica e Inovação</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1b3e; /* Dark Blue from Logo */
+            color: #F3F4F6; /* text-gray-200 */
+        }
+        .hero-video-container {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            overflow: hidden;
+        }
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 0;
+            transform: translateX(-50%) translateY(-50%);
+        }
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(13, 27, 62, 0.75);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .section-title {
+            font-weight: 900;
+            font-size: 2.5rem; /* text-4xl */
+            text-align: center;
+            margin-bottom: 2.5rem; /* mb-10 */
+            background: -webkit-linear-gradient(45deg, #f97316, #0ea5e9); /* Orange to Light Blue */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover {
+            color: #f97316; /* Orange */
+            border-bottom-color: #f97316;
+        }
+        .sponsor-logo {
+            transition: transform 0.3s ease-in-out, filter 0.3s;
+            filter: grayscale(100%) brightness(1.5);
+        }
+        .sponsor-logo:hover {
+            transform: scale(1.1);
+            filter: grayscale(0%) brightness(1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho e Menu de Navegação -->
+    <header class="bg-blue-950/80 backdrop-blur-sm sticky top-0 z-50 w-full shadow-lg shadow-sky-500/10">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo Principal do Menu -->
+            <a href="#" class="text-2xl font-bold text-white flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                RoboMakerFest
+            </a>
+            <!-- Menu para Desktop -->
+            <nav class="hidden md:flex space-x-6">
+                <a href="#sobre" class="nav-link text-gray-300 font-semibold pb-1">Sobre</a>
+                <a href="#inscricoes" class="nav-link text-gray-300 font-semibold pb-1">Inscrições</a>
+                <a href="#modalidades" class="nav-link text-gray-300 font-semibold pb-1">Modalidades</a>
+                <a href="#premiacao" class="nav-link text-gray-300 font-semibold pb-1">Premiação</a>
+                <a href="#equipe" class="nav-link text-gray-300 font-semibold pb-1">Equipe</a>
+                <a href="#apoio" class="nav-link text-gray-300 font-semibold pb-1">Apoio</a>
+                <a href="#local" class="nav-link text-gray-300 font-semibold pb-1">Local</a>
+            </nav>
+            <!-- Botão do Menu Mobile -->
+            <button id="mobile-menu-button" class="md:hidden flex items-center text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <!-- Menu Mobile (oculto por padrão) -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 bg-blue-950/95">
+            <a href="#sobre" class="block py-2 text-gray-300 font-semibold">Sobre</a>
+            <a href="#inscricoes" class="block py-2 text-gray-300 font-semibold">Inscrições</a>
+            <a href="#modalidades" class="block py-2 text-gray-300 font-semibold">Modalidades</a>
+            <a href="#premiacao" class="block py-2 text-gray-300 font-semibold">Premiação</a>
+            <a href="#equipe" class="block py-2 text-gray-300 font-semibold">Equipe</a>
+            <a href="#apoio" class="block py-2 text-gray-300 font-semibold">Apoio</a>
+            <a href="#local" class="block py-2 text-gray-300 font-semibold">Local</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Seção Hero com Vídeo do Mascote -->
+        <section class="hero-video-container">
+            <div class="video-overlay"></div>
+            <video class="hero-video" autoplay loop muted playsinline poster="https://placehold.co/1920x1080/0d1b3e/f97316?text=Carregando+V%C3%ADdeo...">
+                <!-- Substitua pelo link do seu vídeo. Ex: https://www.w3schools.com/html/mov_bbb.mp4 -->
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-a-robot-with-a-human-face-and-an-electronic-brain-34444-large.mp4" type="video/mp4">
+                Seu navegador não suporta a tag de vídeo.
+            </video>
+
+            <!-- LOGO AJUSTADA: Movida para o canto superior esquerdo -->
+            <div class="absolute top-0 left-0 p-4 md:p-6 z-10">
+                <img src="images/logo.jpeg" alt="Logo oficial do RoboMakerFest" class="w-40 md:w-56 rounded-lg">
+            </div>
+
+            <div class="hero-content container mx-auto px-6 h-full flex flex-col justify-center items-center text-center">
+                <h1 class="text-4xl md:text-6xl font-black text-white leading-tight mb-4 text-shadow-lg">O Futuro é Agora. Construa-o.</h1>
+                <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl">O maior festival de robótica, inovação e criatividade da América Latina. Junte-se a nós!</p>
+                <a href="#inscricoes" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
+                    Inscreva-se Agora!
+                </a>
+            </div>
+        </section>
+
+        <!-- Seção Sobre -->
+        <section id="sobre" style="background-color: #0d1b3e;" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Sobre o Evento</h2>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="text-lg text-gray-300 space-y-4">
+                        <p>O <strong>RoboMakerFest</strong> é mais do que um evento; é um movimento que celebra a paixão pela tecnologia, robótica e a cultura maker. Reunimos estudantes, entusiastas, acadêmicos e profissionais para compartilhar conhecimento, competir em desafios emocionantes e inspirar a próxima geração de inovadores.</p>
+                        <p>Nossa missão é democratizar o acesso à tecnologia e à educação STEM (Ciência, Tecnologia, Engenharia e Matemática), criando um ambiente colaborativo e divertido onde a criatividade não tem limites.</p>
+                    </div>
+                    <div>
+                        <div class="rounded-lg overflow-hidden shadow-2xl shadow-sky-500/20">
+                            <img src="https://placehold.co/600x400/1e3a8a/ffffff?text=Imagem+do+Evento" alt="Participantes do RoboMakerFest" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Inscrições -->
+        <section id="inscricoes" class="py-20 bg-blue-900">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Inscrições</h2>
+                <p class="text-center text-gray-300 max-w-3xl mx-auto mb-12">Garanta sua vaga e faça parte desta experiência incrível. As vagas são limitadas!</p>
+                <div class="flex justify-center">
+                     <a href="#" class="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold py-4 px-12 rounded-full text-xl transition duration-300 transform hover:scale-105 shadow-lg">
+                        Acessar Plataforma de Inscrição
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Modalidades -->
+        <section id="modalidades" style="background-color: #0d1b3e;" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Modalidades de Participação</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Card Modalidade 1 -->
+                    <div class="bg-blue-900 rounded-lg p-8 transform hover:-translate-y-2 transition duration-300 shadow-lg hover:shadow-orange-500/30">
+                        <h3 class="text-2xl font-bold text-orange-400 mb-4">Sumô de Robôs</h3>
+                        <p class="text-gray-300">Dois robôs autônomos se enfrentam em um dohyo. O objetivo é empurrar o oponente para fora da arena. Força e estratégia são fundamentais.</p>
+                    </div>
+                    <!-- Card Modalidade 2 -->
+                    <div class="bg-blue-900 rounded-lg p-8 transform hover:-translate-y-2 transition duration-300 shadow-lg hover:shadow-orange-500/30">
+                        <h3 class="text-2xl font-bold text-orange-400 mb-4">Seguidor de Linha</h3>
+                        <p class="text-gray-300">Uma corrida contra o tempo. Robôs autônomos devem percorrer um trajeto demarcado por uma linha preta no menor tempo possível.</p>
+                    </div>
+                    <!-- Card Modalidade 3 -->
+                    <div class="bg-blue-900 rounded-lg p-8 transform hover:-translate-y-2 transition duration-300 shadow-lg hover:shadow-orange-500/30">
+                        <h3 class="text-2xl font-bold text-orange-400 mb-4">Desafio Maker</h3>
+                        <p class="text-gray-300">Equipes recebem um kit surpresa e um desafio. O objetivo é criar a solução mais inovadora e funcional dentro de um tempo limitado.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Premiação -->
+        <section id="premiacao" class="py-20 bg-blue-900">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Premiação</h2>
+                <div class="text-center max-w-4xl mx-auto">
+                    <p class="text-lg text-gray-300 mb-8">Reconhecemos o talento e o esforço de nossos competidores com prêmios incríveis, troféus exclusivos e o reconhecimento da comunidade.</p>
+                    <div class="flex justify-center items-center space-x-8">
+                        <div class="text-center">
+                            <div class="text-6xl text-amber-400">🏆</div>
+                            <h4 class="font-bold text-xl mt-2">Troféus</h4>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-6xl text-green-400">💵</div>
+                            <h4 class="font-bold text-xl mt-2">Prêmios em Dinheiro</h4>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-6xl text-sky-400">🎁</div>
+                            <h4 class="font-bold text-xl mt-2">Kits de Robótica</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Equipe -->
+        <section id="equipe" style="background-color: #0d1b3e;" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Nossa Equipe</h2>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Membro da Equipe 1 -->
+                    <div class="text-center">
+                        <img src="https://placehold.co/200x200/0ea5e9/ffffff?text=Foto" alt="Foto do membro da equipe" class="w-40 h-40 mx-auto rounded-full mb-4 border-4 border-blue-800">
+                        <h4 class="text-xl font-bold text-white">Nome do Membro</h4>
+                        <p class="text-orange-400">Coordenador(a) Geral</p>
+                    </div>
+                    <!-- Adicione mais membros conforme necessário -->
+                    <div class="text-center">
+                        <img src="https://placehold.co/200x200/f97316/ffffff?text=Foto" alt="Foto do membro da equipe" class="w-40 h-40 mx-auto rounded-full mb-4 border-4 border-blue-800">
+                        <h4 class="text-xl font-bold text-white">Nome do Membro</h4>
+                        <p class="text-orange-400">Diretor(a) de Tecnologia</p>
+                    </div>
+                    <div class="text-center">
+                        <img src="https://placehold.co/200x200/0ea5e9/ffffff?text=Foto" alt="Foto do membro da equipe" class="w-40 h-40 mx-auto rounded-full mb-4 border-4 border-blue-800">
+                        <h4 class="text-xl font-bold text-white">Nome do Membro</h4>
+                        <p class="text-orange-400">Gerente de Competições</p>
+                    </div>
+                    <div class="text-center">
+                        <img src="https://placehold.co/200x200/f97316/ffffff?text=Foto" alt="Foto do membro da equipe" class="w-40 h-40 mx-auto rounded-full mb-4 border-4 border-blue-800">
+                        <h4 class="text-xl font-bold text-white">Nome do Membro</h4>
+                        <p class="text-orange-400">Relações Públicas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Apoio/Patrocinadores -->
+        <section id="apoio" class="py-20 bg-blue-900">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Apoio e Patrocinadores</h2>
+                <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">
+                    <img src="https://placehold.co/150x80/ffffff/9ca3af?text=LOGO+PATROCINADOR" alt="Logo Patrocinador 1" class="h-16 sponsor-logo">
+                    <img src="https://placehold.co/150x80/ffffff/9ca3af?text=LOGO+PATROCINADOR" alt="Logo Patrocinador 2" class="h-16 sponsor-logo">
+                    <img src="https://placehold.co/150x80/ffffff/9ca3af?text=LOGO+PATROCINADOR" alt="Logo Patrocinador 3" class="h-16 sponsor-logo">
+                    <img src="https://placehold.co/150x80/ffffff/9ca3af?text=LOGO+PATROCINADOR" alt="Logo Patrocinador 4" class="h-16 sponsor-logo">
+                    <img src="https://placehold.co/150x80/ffffff/9ca3af?text=LOGO+PATROCINADOR" alt="Logo Patrocinador 5" class="h-16 sponsor-logo">
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Local -->
+        <section id="local" style="background-color: #0d1b3e;" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Local do Evento</h2>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="text-lg text-gray-300">
+                        <h3 class="text-2xl font-bold text-white mb-4">Centro de Convenções InovaTech</h3>
+                        <p class="mb-2">Av. do Futuro, 1234 - Bairro da Tecnologia</p>
+                        <p class="mb-4">São Paulo - SP, 01234-567</p>
+                        <p>Um espaço amplo, moderno e totalmente equipado para receber todas as atividades do RoboMakerFest com conforto e segurança.</p>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-2xl shadow-sky-500/20 h-96">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.19751270228!2d-46.65657158502228!3d-23.56135398468257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0x4a3ebb0a9d3de9c6!2sMuseu%20de%20Arte%20de%20S%C3%A3o%20Paulo%20Assis%20Chateaubriand!5e0!3m2!1spt-BR!2sbr!4v1663957864030!5m2!1spt-BR!2sbr" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-blue-950 border-t border-blue-800">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+            <p>&copy; 2024 RoboMakerFest. Todos os direitos reservados.</p>
+            <p class="text-sm">Criado com ❤️ pela comunidade maker.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Script para o menu mobile
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Fecha o menu mobile ao clicar em um link
+        const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
+        for (let link of mobileMenuLinks) {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        }
+    </script>
+</body>
+</html>
